@@ -1,0 +1,4 @@
+2 feture:
++ Login
++ Register
+=> Form, lấy dữ liệu từ input người dùng để xử lý 
