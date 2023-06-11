@@ -52,7 +52,7 @@ class Login {
 
     login = (e) => {
         e.preventDefault();
-        alert(this.inputUsername.value + '\n' + this.inputPasswd.value);
+        // alert(this.inputUsername.value + '\n' + this.inputPasswd.value);
     }
 
     goToRegister = (e) => {

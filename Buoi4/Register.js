@@ -67,7 +67,17 @@ class Register {
 
     register = (e) => {
         e.preventDefault();
-        alert(this.inputUsername.value + '\n' + this.inputEmail.value + '\n' + this.inputPasswd.value);
+        let email = this.inputEmail.value;
+        let password = this.inputPasswd.value;
+        firebase.auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then((userCredentials) => {
+                console.log(userCredentials.user);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+        // alert(this.inputUsername.value + '\n' + this.inputEmail.value + '\n' + this.inputPasswd.value);
     }
 
     goToLogin = (e) => {

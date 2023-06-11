@@ -11,6 +11,7 @@ class App {
     }
 
     changeComponent(component) {
+
         this.component = component;
         this.component.render(this.container);
     }
