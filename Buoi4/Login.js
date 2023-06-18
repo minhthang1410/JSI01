@@ -6,12 +6,12 @@ class Login {
         this.formLogin = document.createElement('form');
         this.formLogin.id = 'formLogin';
         //Tạo input, label username
-        this.divUsername = document.createElement('div');
-        this.labelUsername = document.createElement('label');
-        this.labelUsername.innerText = 'Username'
-        this.inputUsername = document.createElement('input');
-        this.inputUsername.type = 'text';
-        this.inputUsername.id = 'username';
+        this.divEmail = document.createElement('div');
+        this.labelEmail = document.createElement('label');
+        this.labelEmail.innerText = 'Email'
+        this.inputEmail = document.createElement('input');
+        this.inputEmail.type = 'email';
+        this.inputEmail.id = 'email';
         //Tạo input, label password
         this.divPasswd = document.createElement('div');
         this.labelPasswd = document.createElement('label');
@@ -25,20 +25,20 @@ class Login {
         this.btnRegister = document.createElement('button');
         this.btnRegister.innerText = 'Register';
         //Thêm các thẻ html vào thẻ form
-        this.divUsername.appendChild(this.labelUsername);
-        this.divUsername.appendChild(this.inputUsername);
+        this.divEmail.appendChild(this.labelEmail);
+        this.divEmail.appendChild(this.inputEmail);
         this.divPasswd.appendChild(this.labelPasswd);
         this.divPasswd.appendChild(this.inputPasswd);
-        this.formLogin.appendChild(this.divUsername);
+        this.formLogin.appendChild(this.divEmail);
         this.formLogin.appendChild(this.divPasswd);
         this.formLogin.appendChild(this.btnSubmit);
         this.formLogin.appendChild(this.btnRegister);
     }
 
     render(container) {
-        this.divUsername.classList.add('mb-3');
+        this.divEmail.classList.add('mb-3');
         this.divPasswd.classList.add('mb-3');
-        this.inputUsername.classList.add('form-control');
+        this.inputEmail.classList.add('form-control');
         this.inputPasswd.classList.add('form-control');
         this.btnSubmit.classList.add('btn');
         this.btnSubmit.classList.add('btn-success');
@@ -52,6 +52,18 @@ class Login {
 
     login = (e) => {
         e.preventDefault();
+        let email = this.inputEmail.value;
+        let password = this.inputPasswd.value;
+        firebase.auth()
+            .signInWithEmailAndPassword(email, password)
+            .then((userCredentials) => {
+                const user = userCredentials.user;
+                const token = user.getIdToken();
+                console.log(token);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
         // alert(this.inputUsername.value + '\n' + this.inputPasswd.value);
     }
 
