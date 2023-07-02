@@ -72,10 +72,12 @@ class Register {
         firebase.auth()
             .createUserWithEmailAndPassword(email, password)
             .then((userCredentials) => {
-                console.log(userCredentials.user);
+                if(userCredentials.user) {
+                    app.showNotification("Đăng ký thành công", true);
+                }
             })
             .catch((error) => {
-                console.error(error);
+                app.showNotification(error, false);
             })
         // alert(this.inputUsername.value + '\n' + this.inputEmail.value + '\n' + this.inputPasswd.value);
     }

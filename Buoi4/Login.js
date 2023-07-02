@@ -60,9 +60,12 @@ class Login {
                 const user = userCredentials.user;
                 const token = user.getIdToken();
                 console.log(token);
+                if (token) {
+                    app.showNotification("Đăng nhập thành công", true);
+                }
             })
             .catch((error) => {
-                console.error(error);
+                app.showNotification(error, false);
             })
         // alert(this.inputUsername.value + '\n' + this.inputPasswd.value);
     }
